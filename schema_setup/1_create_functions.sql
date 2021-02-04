@@ -1,4 +1,4 @@
-GRANT USAGE ON SCHEMA ibge_v1 TO anonymous,app_admin,app_org_manager;
+GRANT USAGE ON SCHEMA ibge_v1 TO anonymous;
 
 CREATE FUNCTION ibge_v1.vicinity_population(latitude numeric, longitude numeric, radius integer)
 RETURNS TABLE("2010" numeric, "2019" numeric, "2020" numeric) AS $$
@@ -45,5 +45,7 @@ RETURNS TABLE(cd_geocodm text, nome text, "2010" numeric, "2019" numeric, "2020"
   );
 $$ LANGUAGE SQL IMMUTABLE security definer;
 
-GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA ibge_v1 TO app_admin,app_org_manager;
+-- GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA ibge_v1 TO app_admin,app_org_manager;
+GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA ibge_v1 TO anonymous;
+
 

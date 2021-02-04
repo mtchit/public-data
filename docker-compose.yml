@@ -5,7 +5,7 @@ volumes:
 
 services:
   db:
-    image: postgis/postgis:12-3.0-alpine
+    image: postgis/postgis:12-3.1-alpine
     ports:
       - 5433:5432
     environment:
@@ -19,17 +19,13 @@ services:
       - "./db_setup:/docker-entrypoint-initdb.d"
       - dbdata:/var/lib/postgresql/data
   api:
-    build: ./
-    image: matched/postgrest
+    image: postgrest/postgrest:v7.0.1
     ports:
       - "3031:3000"
     environment:
       PGRST_DB_URI: postgres://postgrest:postgrest_password@db:5432/public_data
       PGRST_DB_SCHEMA: ibge_v1 
       PGRST_DB_ANON_ROLE: anonymous
-      PGRST_ROLE_CLAIM_KEY: ".\"https://www.matched.com.br/role\""
-      PGRST_JWT_AUD: "https://api.matched.com.br"
-      PGRST_JWT_SECRET: "@/opt/config/rsa.jwk.pub"
       PGRST_OPENAPI_SERVER_PROXY_URI: http://127.0.0.1:3031
     depends_on:
       - db
