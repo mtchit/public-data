@@ -32,6 +32,9 @@ for state in $all_states; do
     bash -c "${convertion_cmd} ${input_shape} ${target} > ${output_sql}" \
     || exit 1
 
+  sed -r -i -e "s/('[A-F0-9]+?')\);/ST_Force3DM\(\1\)\);/g" ${setores_path}/${state}.sql
+  sed -i -e 's/ANALYZE "ibge"."setor_censitario";//' ${setores_path}/${state}.sql
+
   rm -rf ${setores_path}/${state} || exit 1
 done
 

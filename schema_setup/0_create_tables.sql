@@ -314,12 +314,6 @@ CREATE TABLE ibge.populacao_municipio_censo_2010 (
   "populacao" numeric NOT NULL
 );
 
-CREATE TABLE ibge.populacao_municipio_est_2019 (
-  "cd_geocodm" text NOT NULL PRIMARY KEY,
-  "nome" text NOT NULL,
-  "populacao" numeric NOT NULL
-);
-
 CREATE TABLE ibge.populacao_municipio_est_2020 (
   "cd_geocodm" text NOT NULL PRIMARY KEY,
   "nome" text NOT NULL,
@@ -339,7 +333,8 @@ CREATE TABLE "ibge"."setor_censitario" (
   "cd_geocodm" text,
   "nm_municip" text,
   "nm_micro" text,
-  "nm_meso" text
+  "nm_meso" text,
+  "id1" text
 );
 SELECT AddGeometryColumn('ibge','setor_censitario','geom','4674','MULTIPOLYGONM',3);
 

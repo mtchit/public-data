@@ -20,7 +20,7 @@ echo 'Importing setores censitarios:'
 cd ${setores_path}
 for file in *.sql; do
     echo $file
-  psql "postgresql://$DB_USER:$DB_PWD@$DB_SERVER/$DB_NAME" -f $file || exit 1
+  psql "postgresql://$DB_USER:$DB_PWD@$DB_SERVER/$DB_NAME" -f $file > /dev/null || exit 1
 done
 cd - > /dev/null
 echo
